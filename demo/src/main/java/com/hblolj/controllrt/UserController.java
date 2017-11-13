@@ -5,6 +5,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * @Author: hblolj
  * @Date: Create in 15:29 2017/10/21
@@ -13,8 +16,13 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserController {
 
     @GetMapping("/user")
-    public User query(@RequestParam("userName") String userName, @RequestParam("password") String password){
-        return new User(userName, password);
+    public List<User> query(User user){
+        System.out.println(user.toString());
+        List<User> users = new ArrayList<>();
+        users.add(new User());
+        users.add(new User());
+        users.add(new User());
+        return users;
     }
 
     @GetMapping("/test")

@@ -14,17 +14,21 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @Configuration
 public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    @Bean
-    public PasswordEncoder passwordEncoder(){
-        return new BCryptPasswordEncoder();
-    }
+//    @Bean
+//    public PasswordEncoder passwordEncoder(){
+//        return new BCryptPasswordEncoder();
+//    }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.formLogin()
+//                .loginPage("/login")
+                .loginProcessingUrl("/login")
                 .and()
                 .authorizeRequests()
+                .antMatchers("/login").permitAll()
                 .anyRequest()
-                .authenticated();
+                .authenticated()
+        .and().csrf().disable();
     }
 }
